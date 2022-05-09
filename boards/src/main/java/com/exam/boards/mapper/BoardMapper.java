@@ -15,7 +15,13 @@ public interface BoardMapper {
 	public void list(BoardsVO boards);
 
 	//select
-	public List <BoardsVO> getBoardList(); 
+	public List <BoardsVO> getBoardList();
+	
+	//게시글 등록
+	public void boardUpload(BoardsVO boards);
+	
+	//게시글 조회 //값이 담겨 있는 객체인 BoardsVO 작성해주고 (값의 타입)을 작성해 준다.
+	public BoardsVO boardDetail(int no);
 	
 	//수정
 	public int modify(BoardsVO boards);

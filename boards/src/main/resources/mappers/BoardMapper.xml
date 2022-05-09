@@ -12,19 +12,33 @@
    		( #{title}, #{user_name})
    	</insert>
    
-   
-   	
 	<!-- boardMapper에서 list에 담아주었기 때문에 resurtType으로 객체를 넣어준다. -->
    	<select id="getBoardList" resultType="com.exam.boards.model.BoardsVO">
    	   		select * from board;
    	</select>
    	
+   	<!-- 게시글 등록 -->
+   	<insert id="boardUpload" parameterType="com.exam.boards.model.BoardsVO">
+   		insert into board (no, title, board_classification, use_yn, content, user_id, lastmodified, hits, created)
+   		values
+   		(#{no}, #{title}, #{board_classification}, #{use_yn}, #{content}, #{user_id}, #{lastmodified}, #{hits}, #{created})
+   	</insert>
+   	
+   	<select id="boardDetail" parameterType="int" resultType="com.exam.boards.model.BoardsVO">
+   		select * from board where no = #{no}
+   	</select>
+   	
    	<update id="modify"  parameterType="com.exam.boards.model.BoardsVO">
-   		update board no = #{no}, title = #{title}
+   		update board 
+   		set 
+   		title = #{title} 
+   		where no = #{no}
    	</update>
    	
    	<delete id="delete" parameterType="int">
-   		delete from board where no is not null = #{no is not null}
+   		delete 
+   		from board 
+   		where no = #{no}
    	</delete>
    	
 

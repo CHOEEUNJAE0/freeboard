@@ -17,21 +17,7 @@ public class BoardMapperTests {
 	
     private static final Logger log = LoggerFactory.getLogger(BoardMapperTests.class);
     
-    @Autowired
-    private BoardMapper mapper;
 
-    @Test
-    public void testEnroll() {
-        
-        BoardsVO vo = new BoardsVO();
-        
-        vo.setTitle("mapper test");
-        vo.setUser_name("mapper test");
-      
-        
-        mapper.list(vo);
         
     }
     
-
-}
