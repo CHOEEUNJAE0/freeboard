@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.exam.boards.mapper.BoardMapper">
+   
+   <!-- mapper interface에서 실핼 될 때 실핼 될 sql 쿼리문 id는 매서드 이름과 동일하개 작성 -->
+   	<insert id="list">
+   		insert into board(title, user_name) 
+   		values 
+   		( #{title}, #{user_name})
+   	</insert>
+   
+   
+   	
+	<!-- boardMapper에서 list에 담아주었기 때문에 resurtType으로 객체를 넣어준다. -->
+   	<select id="getBoardList" resultType="com.exam.boards.model.BoardsVO">
+   	   		select * from board;
+   	</select>
+   	
+   	<update id="modify"  parameterType="com.exam.boards.model.BoardsVO">
+   		update board no = #{no}, title = #{title}
+   	</update>
+   	
+   	<delete id="delete" parameterType="int">
+   		delete from board where no is not null = #{no is not null}
+   	</delete>
+   	
+
+</mapper>
