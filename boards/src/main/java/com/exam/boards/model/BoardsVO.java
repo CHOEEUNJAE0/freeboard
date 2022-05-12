@@ -2,11 +2,14 @@ package com.exam.boards.model;
 
 import lombok.Data;
 
+
+@Data
 public class BoardsVO {
 	
 	private int no;
 	private String title;
 	private String board_classification;
+	private String classification;
 	private String use_yn;
 	private String content;
 	private String answer;
@@ -33,11 +36,18 @@ public class BoardsVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getBoard_classification() {
 		return board_classification;
 	}
 	public void setBoard_classification(String board_classification) {
 		this.board_classification = board_classification;
+	}
+	public String getClassification() {
+		return classification;
+	}
+	public void setClassification(String classification) {
+		this.classification = classification;
 	}
 	public String getUse_yn() {
 		return use_yn;

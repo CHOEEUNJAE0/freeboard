@@ -12,21 +12,21 @@ import com.exam.boards.model.BoardsVO;
 public interface BoardMapper {
 	
 	//insert       //파라미터로 BoardsVO
-	public void list(BoardsVO boards);
+	//public void list(BoardsVO boards);
 
-	//select
+	//select 게시글 목록 조회
 	public List <BoardsVO> getBoardList();
 	
-	//게시글 등록
-	public void boardUpload(BoardsVO boards);
+	//게시글 등록             //리턴 파라미터 타입
+	public void BoardUpload(BoardsVO boards);
 	
-	//게시글 조회 //값이 담겨 있는 객체인 BoardsVO 작성해주고 (값의 타입)을 작성해 준다.
+	//하나의 게시글 조회 //값이 담겨 있는 객체인 BoardsVO 작성해주고 (값의 타입)을 작성해 준다.
 	public BoardsVO boardDetail(int no);
 	
-	//수정
+	//수정             //boardVO클래스를 boards 이름으로 지정, boards에 게시글의 정보가 담김
 	public int modify(BoardsVO boards);
-
-	public BoardsVO getPage(int no);
+	
+	//public BoardsVO getPage(int no);
 	
 	//삭제
 	public int delete (int no);

@@ -6,35 +6,34 @@
 <mapper namespace="com.exam.boards.mapper.BoardMapper">
    
    <!-- mapper interface에서 실핼 될 때 실핼 될 sql 쿼리문 id는 매서드 이름과 동일하개 작성 -->
-   	<insert id="list">
-   		insert into board(title, user_name) 
-   		values 
-   		( #{title}, #{user_name})
-   	</insert>
    
 	<!-- boardMapper에서 list에 담아주었기 때문에 resurtType으로 객체를 넣어준다. -->
+	<!-- 전체 게시글 조회 -->
    	<select id="getBoardList" resultType="com.exam.boards.model.BoardsVO">
    	   		select * from board;
    	</select>
    	
    	<!-- 게시글 등록 -->
-   	<insert id="boardUpload" parameterType="com.exam.boards.model.BoardsVO">
-   		insert into board (no, title, board_classification, use_yn, content, user_id, lastmodified, hits, created)
+   	<insert id="BoardUpload" parameterType="com.exam.boards.model.BoardsVO">
+   		insert into board (title, board_classification, classification, use_yn, content, user_id, lastmodified, hits, created)
    		values
-   		(#{no}, #{title}, #{board_classification}, #{use_yn}, #{content}, #{user_id}, #{lastmodified}, #{hits}, #{created})
+   		(#{title}, #{board_classification}, #{classification}, #{use_yn}, #{content}, #{user_id}, #{lastmodified}, #{hits}, #{created})
    	</insert>
    	
+   	<!-- 하나의 게시글 조회 -->
    	<select id="boardDetail" parameterType="int" resultType="com.exam.boards.model.BoardsVO">
    		select * from board where no = #{no}
    	</select>
    	
+   	<!-- 게시글 수정 -->
    	<update id="modify"  parameterType="com.exam.boards.model.BoardsVO">
    		update board 
    		set 
-   		title = #{title} 
+   		title = #{title} , content = #{content}
    		where no = #{no}
    	</update>
    	
+   	<!-- 게시글 삭제 -->
    	<delete id="delete" parameterType="int">
    		delete 
    		from board 

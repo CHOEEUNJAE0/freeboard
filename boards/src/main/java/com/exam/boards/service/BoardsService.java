@@ -15,22 +15,24 @@ public class BoardsService {
 	@Autowired
 	BoardMapper boardmapper;
 	
-
+	//게시글 목록 조회
 	public List <BoardsVO> getBoardList() {
 		return boardmapper.getBoardList();
 	}
 	
-	//게시글 조회
-	public BoardsVO BoardDetail(int no) {
+	//하나의 게시글 조회
+		
+	public BoardsVO BoardDetail(int no, BoardsVO boards) {
 		return boardmapper.boardDetail(no);
 	}
 	
+	//게시글 등록
 	public void BoardUploard(BoardsVO boards) {
-		boardmapper.boardUpload(boards);
+		boardmapper.BoardUpload(boards);
 		
 	}
 	
-	//수정
+	//게시글 수정
 	public int modify(BoardsVO boards) {
 		
 		//System.out.println(boards.getNo());
@@ -39,10 +41,10 @@ public class BoardsService {
 	
 	}
 
-	public BoardsVO getPage(int no) { 
+	/*public BoardsVO getPage(int no) { 
 		return boardmapper.getPage(no);
-	}
-	//삭제
+	}*/
+	//게시글 삭제
 	public int delete(int no) {
 		return boardmapper.delete(no);
 	}
