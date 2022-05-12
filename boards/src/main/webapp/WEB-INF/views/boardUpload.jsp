@@ -27,7 +27,7 @@
 			<button class="btn">등록</button>
 	</form>
 	<script>
-		ajax.
+
 		
 	</script>
 </body>

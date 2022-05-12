@@ -22,7 +22,7 @@ public class BoardsService {
 	
 	//하나의 게시글 조회
 		
-	public BoardsVO BoardDetail(int no, BoardsVO boards) {
+	public BoardsVO BoardDetail(int no) {
 		return boardmapper.boardDetail(no);
 	}
 	
@@ -41,9 +41,6 @@ public class BoardsService {
 	
 	}
 
-	/*public BoardsVO getPage(int no) { 
-		return boardmapper.getPage(no);
-	}*/
 	//게시글 삭제
 	public int delete(int no) {
 		return boardmapper.delete(no);

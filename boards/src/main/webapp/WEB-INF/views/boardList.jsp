@@ -8,8 +8,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	
     <title>목록 페이지</title>
     <style>
     	h1{
@@ -62,10 +60,10 @@
           	font-weight: 600;
         }
         </style>
-<script>
+<script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"
+  crossorigin="anonymous">
 </script>
     </head>
     <body>
@@ -87,13 +85,19 @@
                <c:forEach items="${list}" var="list">
 				<tr>
 					<td><c:out value="${list.no}"/></td>
-					<td><c:out value="${list.title}"/></td>
+					<td>
+						<!-- 제목 클릭 시 조회페이지로 이동 -->
+						<a class="move" href='/detail?no=<c:out value="${list.no}"/>'>
+							<c:out value="${list.title}"/>
+						</a>                     
+						</td>
 					<td><c:out value="${list.user_id}"/></td>
 					<td><c:out value="${list.created}"/></td>
 					<td><c:out value="${list.hits}"/></td>
 				</tr>
 			</c:forEach>
         </table>
+        <form id="moveForm" method="get"></form>
 		</div>
 		 
 <script>
@@ -108,8 +112,23 @@
         if(result === "BoardUpload success") {
         		alret("등록이 완료 되었습니다.");	
        	 }
+        if(result === "modify success"){
+        	arlet("수정이 완료 되었습니다.")
         }
+       }
     });
+    
+
+    let moveForm = $("#moveForm");
+ 
+    $(".move").on("click", function(e){
+        e.preventDefault();
+        
+        moveForm.append("<input type='hidden' name='no' value='"+ $(this).attr("href")+ "'>");
+        moveForm.attr("action", "/list/detail");
+        moveForm.submit();
+    });
+ 
  
 </script>
 		

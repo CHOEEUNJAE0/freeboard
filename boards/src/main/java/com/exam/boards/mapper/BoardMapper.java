@@ -23,7 +23,9 @@ public interface BoardMapper {
 	//하나의 게시글 조회 //값이 담겨 있는 객체인 BoardsVO 작성해주고 (값의 타입)을 작성해 준다.
 	public BoardsVO boardDetail(int no);
 	
-	//수정             //boardVO클래스를 boards 이름으로 지정, boards에 게시글의 정보가 담김
+	//수정             
+	//no,title,content,user_id에 대한 데이터가 필요하기때문에 해당 변수가 정의 도니 BoardVO를 파라미터로 지정
+	//수정 메서드는 반환 타입이 필요 없긴 하지만 int 형으로 설정 하면 성고 시 1을 반환, 실패 시 0을 반환 해준다.
 	public int modify(BoardsVO boards);
 	
 	//public BoardsVO getPage(int no);

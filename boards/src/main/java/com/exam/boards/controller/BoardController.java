@@ -60,26 +60,27 @@ public class BoardController {
 	}
 	 
 	//상세페이지 진입 //됨
-	@GetMapping("/detail/{no}")
-	@ResponseBody
-	public BoardsVO BoardDetail(@PathVariable int no, RedirectAttributes rttr) {
-		return boardsService.BoardDetail(no);
+	@GetMapping("/detail")
+	public void BoardDetail(int no, Model model) {
+		model.addAttribute("detail", boardsService.BoardDetail(no));
 	}
 	
-	//수정 페이지로 이동 //안됨
+	//수정 페이지로 이동 
+	//조회페이지 이동 메서드와 동일/
+	//수정하고자 하는 내용을 출력해야하기 때문에 int형 파라미터와 해당 게시판의 
+	//호출하는 service 메소드 (boardDetail)을 호출
 	@GetMapping("detail/modify/{no}")
-	public String BoardModifyGet() {
-		return "boardModify";
+	public void BoardModifyGet(int no, Model model) {
+		model.addAttribute("detail", boardsService.BoardDetail(no));
 	}
 	
-	//페이지 수정 //   //안됨
-	@PutMapping("/board/{no}")							//객체를 받아 올 때 객체로 인식해주는 어노테이션
+	//페이지 수정 //   
+	@PutMapping("detail/modify/{no}")							//객체를 받아 올 때 객체로 인식해주는 어노테이션
 	public String BoardModifyPOST(@PathVariable int no, @RequestBody BoardsVO boards, RedirectAttributes rttr) {
-		boards.setNo(no);
 		boardsService.modify(boards);
 		System.out.println(no);
 		rttr.addFlashAttribute("result", "modify success");
-		return "redirect:/detail";
+		return "redirect:/list";
 		
 	}
 	

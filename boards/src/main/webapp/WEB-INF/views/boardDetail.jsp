@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +49,10 @@ textarea{
 	margin-top : 50px;
 }
 </style>
-<script>
+<script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"
+  crossorigin="anonymous">
 </script>
     </head>
     <body>
@@ -61,45 +60,49 @@ textarea{
         
         <div class="input_wrap">
         	<label>글 번호</label>
-        		<input name="no" readonly="readonly" value='<c:out value="${boardmapper.no}"/>'>
+        		<input name="no" readonly="readonly" value='<c:out value="${detail.no}"/>'>
         </div>	
         <div class="input_wrap">
         	<label>글 제목</label>
-        		<input name="title" readonly="readonly" value='<c:out value="${boardmapper.title}"/>'>
+        		<input name="title" readonly="readonly" value='<c:out value="${detail.title}"/>'>
         </div>
+		<div class="input_wrap">
+			<label>게시판 내용</label>
+				<textarea rows="10" name="content" readonly="readonly"><c:out value="${detail.content}"/></textarea>
+		</div>
         <div class="input_wrap">
         	<label>작성자</label>
-        		<input name="user_id" readonly="readonly" value='<c:out value="${boardmapper.user_id}"/>'>
+        		<input name="user_id" readonly="readonly" value='<c:out value="${detail.user_id}"/>'>
         </div>		
         <div class="input_wrap">
         	<label>작성일</label>
-        		<input name="created" readonly="readonly" value='<c:out value="${boardmapper.created}"/>'>
+        		<input name="created" readonly="readonly" value='<c:out value="${detail.created}"/>'>
         </div>		 
        	<div class="input_wrap">
         	<label>조회수</label>
-        		<input name="hits" readonly="readonly" value='<c:out value="${boardmapper.hits}"/>'>
+        		<input name="hits" readonly="readonly" value='<c:out value="${detail.hits}"/>'>
         </div>
         <div class="btn_wrap">
 			<a class="btn" id="list_btn">목록 페이지</a> 
 			<a class="btn" id="modify_btn">수정 하기</a>
 		</div>
-		<form id="infoForm" action="/list/modify" method="get">
-			<input type="hidden" id="no" name="no" value='<c:out value="${boardmapper.no}"/>'>
+		<form id="infoForm" action="/detail/modify" method="get">
+			<input type="hidden" id="no" name="no" value='<c:out value="${detail.no}"/>'>
 		</form>
         	
 <script>
-    let form = $("infoForm");
-    
-    $("list_btn").on("click", function(e){
-    		form.find("#no").remove();
-    		form.attr("action","/list");
-    		form.submit();
-    });
- 
-    $(""modify_btn).on("click", funtion(e){
-    		form.attr("action", "/detail/modify");
-    		form.submit();
-    });
+	let form = $("#infoForm");
+
+	$("#list_btn").on("click", function(e){
+		form.find("#no").remove();
+		form.attr("action", "/list");
+		form.submit();
+	});
+
+	$("#modify_btn").on("click", function(e){
+		form.attr("action", "/detail/modify");
+		form.submit();
+	});	
 </script>
 		
 </body>
