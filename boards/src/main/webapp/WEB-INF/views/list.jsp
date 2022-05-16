@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,10 +84,10 @@
 				<tr>
 					<td><c:out value="${list.no}"/></td>
 					<td>
-						<!-- 제목 클릭 시 조회페이지로 이동 -->
-						<a class="move" href='/detail?no=<c:out value="${list.no}"/>'>
-							<c:out value="${list.title}"/>
-						</a>                     
+						<!-- 제목 클릭 시 조회페이지로 이동 -->                 	
+    				 <a class="move" href='/detail?no=<c:out value="${list.no}"/>'>
+        				<c:out value="${list.title}"/>
+    				</a>
 						</td>
 					<td><c:out value="${list.user_id}"/></td>
 					<td><c:out value="${list.created}"/></td>
@@ -101,33 +99,36 @@
 		</div>
 		 
 <script>
-    $(document).ready(function(){
-    
-        let result = '<c:out value="${result}"/>'; //서버로부터 전달받은 값을 저장하기 위한 변수 선언
-     	checkAlert(result);   					//result에 담긴 값이 아무것도 없을 경우 실행 되지 않고
-        function checkAlert(result){			//값이 있을 경우 어떠한 메세지가 있는지 체크 한 뒤 게시판 등록 완료 메세지 띄움
-        	if(result === '') {					//작성한 함수를 호출, 인자 값으로는 서버로부터 전달 받은 값인 result를 부여
-        		return;
-        	}
-        if(result === "BoardUpload success") {
-        		alret("등록이 완료 되었습니다.");	
-       	 }
-        if(result === "modify success"){
-        	arlet("수정이 완료 되었습니다.")
-        }
-       }
-    });
-    
 
-    let moveForm = $("#moveForm");
- 
-    $(".move").on("click", function(e){
-        e.preventDefault();
-        
-        moveForm.append("<input type='hidden' name='no' value='"+ $(this).attr("href")+ "'>");
-        moveForm.attr("action", "/list/detail");
-        moveForm.submit();
-    });
+$(document).ready(function(){
+	let result = '<c:out value="${result}" />';
+	
+	checkAlert(result);
+	console.log(resilt);
+	
+	function checkAlert(result) {
+		if(result === ''){
+			return;
+		}
+		if(result === "upload success") {
+			alret("등록이 완료 되었습니다.");
+		}
+		if(result === "modify success") {
+			alert("수정이 완료 되었습니다.");
+		}
+	}
+}); 
+let moveForm = $("#moveForm");
+
+$(".move").on("click", function(e){
+    e.preventDefault();
+    
+    moveForm.append("<input type='hidden' name='no' value='"+ $(this).attr("href")+ "'>");
+    moveForm.attr("action", "/detail");
+    moveForm.submit();
+});
+
+
  
  
 </script>

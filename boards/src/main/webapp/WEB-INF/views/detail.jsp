@@ -10,7 +10,12 @@
 
 	
     <title>목록 페이지</title>
-    <style>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
+<style>
 <style type="text/css">
 .input_wrap{
 	padding: 5px 20px;
@@ -49,17 +54,14 @@ textarea{
 	margin-top : 50px;
 }
 </style>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous">
-</script>
+
     </head>
     <body>
         <h1> 상세페이지 📑</h1>
         
         <div class="input_wrap">
         	<label>글 번호</label>
+        	<!-- value속성에 서버로 부터 전달 받은 ${detail} 객체에 담긴 데이터들을 속성 값으로 부여하여 페이지에 출력  -->
         		<input name="no" readonly="readonly" value='<c:out value="${detail.no}"/>'>
         </div>	
         <div class="input_wrap">
@@ -68,7 +70,7 @@ textarea{
         </div>
 		<div class="input_wrap">
 			<label>게시판 내용</label>
-				<textarea rows="10" name="content" readonly="readonly"><c:out value="${detail.content}"/></textarea>
+				<textarea rows="3" name="content" readonly="readonly"><c:out value="${detail.content}"/></textarea>
 		</div>
         <div class="input_wrap">
         	<label>작성자</label>
@@ -86,7 +88,8 @@ textarea{
 			<a class="btn" id="list_btn">목록 페이지</a> 
 			<a class="btn" id="modify_btn">수정 하기</a>
 		</div>
-		<form id="infoForm" action="/detail/modify" method="get">
+		<!-- 페이징, 검색 기능을 위해 form처리 -->
+		<form id="infoForm" action="/modify" method="get">
 			<input type="hidden" id="no" name="no" value='<c:out value="${detail.no}"/>'>
 		</form>
         	
@@ -100,7 +103,7 @@ textarea{
 	});
 
 	$("#modify_btn").on("click", function(e){
-		form.attr("action", "/detail/modify");
+		form.attr("action", "/modify");
 		form.submit();
 	});	
 </script>

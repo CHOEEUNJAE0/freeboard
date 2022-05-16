@@ -34,13 +34,13 @@ public class BoardController {
 	@GetMapping("/list")
 	public String GetBoardList(Model model) {
 		model.addAttribute("list", boardsService.getBoardList());
-		return "boardList";
+		return "list";
 	}
 	
 	//등록페이지로 진입
 	@GetMapping("/upload")
 	public String BoardUploadGet() {
-		return "boardUpload";
+		return "upload";
 	}
 	
 	
@@ -59,33 +59,34 @@ public class BoardController {
 		return "redirect:/list";
 	}
 	 
-	//상세페이지 진입 //됨
+	//상세페이지 진입 
 	@GetMapping("/detail")
 	public void BoardDetail(int no, Model model) {
 		model.addAttribute("detail", boardsService.BoardDetail(no));
+		System.out.println("되는거야?");
 	}
 	
 	//수정 페이지로 이동 
 	//조회페이지 이동 메서드와 동일/
 	//수정하고자 하는 내용을 출력해야하기 때문에 int형 파라미터와 해당 게시판의 
 	//호출하는 service 메소드 (boardDetail)을 호출
-	@GetMapping("detail/modify/{no}")
+	@GetMapping("/modify")
 	public void BoardModifyGet(int no, Model model) {
 		model.addAttribute("detail", boardsService.BoardDetail(no));
 	}
 	
 	//페이지 수정 //   
-	@PutMapping("detail/modify/{no}")							//객체를 받아 올 때 객체로 인식해주는 어노테이션
-	public String BoardModifyPOST(@PathVariable int no, @RequestBody BoardsVO boards, RedirectAttributes rttr) {
+	@PostMapping("/modify")							//객체를 받아 올 때 객체로 인식해주는 어노테이션 utf-8 인식 에러가 떠서 requestbody 지워줬더니 에러 없어지고 수정 성공 ㅠ
+	public String BoardModifyPOST(int no, BoardsVO boards, RedirectAttributes rttr) {
 		boardsService.modify(boards);
-		System.out.println(no);
+		System.out.println("되는건가????");
 		rttr.addFlashAttribute("result", "modify success");
 		return "redirect:/list";
 		
 	}
 	
 	//페이지 삭제
-	@DeleteMapping("/board/{no}")
+	@DeleteMapping("/delete/{no}")
 	public String boardDeletePOST(@PathVariable int no, RedirectAttributes rttr) {
 		boardsService.delete(no);
 		System.out.println(no);

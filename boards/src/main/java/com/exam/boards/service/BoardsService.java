@@ -20,15 +20,14 @@ public class BoardsService {
 		return boardmapper.getBoardList();
 	}
 	
-	//하나의 게시글 조회
-		
+	//하나의 게시글 조회	
 	public BoardsVO BoardDetail(int no) {
-		return boardmapper.boardDetail(no);
+		return boardmapper.detail(no);
 	}
 	
 	//게시글 등록
 	public void BoardUploard(BoardsVO boards) {
-		boardmapper.BoardUpload(boards);
+		boardmapper.upload(boards);
 		
 	}
 	

@@ -14,14 +14,14 @@
    	</select>
    	
    	<!-- 게시글 등록 -->
-   	<insert id="BoardUpload" parameterType="com.exam.boards.model.BoardsVO">
+   	<insert id="upload" parameterType="com.exam.boards.model.BoardsVO">
    		insert into board (title, board_classification, classification, use_yn, content, user_id, lastmodified, hits, created)
    		values
    		(#{title}, #{board_classification}, #{classification}, #{use_yn}, #{content}, #{user_id}, #{lastmodified}, #{hits}, #{created})
    	</insert>
    	
    	<!-- 하나의 게시글 조회 -->
-   	<select id="boardDetail" parameterType="int" resultType="com.exam.boards.model.BoardsVO">
+   	<select id="detail" parameterType="int" resultType="com.exam.boards.model.BoardsVO" >
    		select * from board where no = #{no}
    	</select>
    	

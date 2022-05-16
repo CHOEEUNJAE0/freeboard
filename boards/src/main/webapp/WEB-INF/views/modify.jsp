@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 	<!-- 수정은 list페이지도 같이 수정 해줘야 한다. boardDetail.jsp를 복붙한다.-->
 	<h1> 상세페이지 📑</h1>
         
-        <form id="modifyForm" action="/detail/modify" method="post">
+        <form id="modifyForm" action="/modify" method="post">
     	    
         <div class="input_wrap">
         	<label>글 번호</label>
@@ -27,7 +28,7 @@
         </div>
 		<div class="input_wrap">
 			<label>게시판 내용</label>
-				<textarea rows="10" name="content"> <c:out value="${detail.content}"/></textarea>
+				<textarea rows="3" name="content"><c:out value="${detail.content}"/></textarea>
 		</div>
         <div class="input_wrap">
         	<label>작성자</label>
@@ -48,12 +49,12 @@
 		</div>
 		</form>
 		
-		<form id="infoForm" action="/detail/modify" method="get">
+		<form id="infoForm" action="/modify" method="get">
 			<input type="hidden" id="no" name="no" value='<c:out value="${detail.no}"/>'>
 		</form>
 <script>
-	let form = $('#infoForm'); //페이지 이동 form (list 페이지 이동)
-	let mForm = $('#modifyForm'); //페이지 데이터 수정 form
+	let form = $("#infoForm");  //페이지 이동 form (list 페이지 이동)
+	let mForm = $("#modifyForm");  //페이지 데이터 수정 form
 	
 	//목록 페이지 이동 버튼
 	$("#list_btn").on("click", function(e){
@@ -64,12 +65,14 @@
 	
 	//수정 버튼
 	$("#modify_btn").on("click", function(e){
+		form.attr("action", "/list");
 		mForm.submit();
 		});
 	
 	//수정 취소 버튼
 	$("#cancel_btn").on("click", function(e){
 		form.attr("action", "/detail");
+		form.submit();
 	});
 
 
