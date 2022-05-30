@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exam.boards.model.BoardsVO;
+import com.exam.boards.model.Criteria;
+import com.exam.boards.model.PageMakerDTO;
 import com.exam.boards.service.BoardsService;
 
 @Controller
@@ -30,12 +32,20 @@ public class BoardController {
 
 	}
 	
-	//게시판 목록
-	@GetMapping("/list")
-	public String GetBoardList(Model model) {
-		model.addAttribute("list", boardsService.getBoardList());
-		return "list";
+	//게시판 목록(페이징 적용)
+	@GetMapping("/list")   //보고자 하는 페이지의 정보를 얻기 위해 criteria 파라미터 추가
+	public void GetBoardList(Model model, Criteria cri) {
+		model.addAttribute("list", boardsService.getListPaging(cri));
+		
+		int total = boardsService.getTotal();
+		
+		PageMakerDTO pageMaker = new PageMakerDTO(cri, total);
+		//dto 클래스의 데이터를 view로 보내기 위해 addAttribute 메소드 활용 pageMaker 속성에 저장
+		model.addAttribute("pageMaker", pageMaker);
+
 	}
+	
+	
 	
 	//등록페이지로 진입
 	@GetMapping("/upload")
@@ -61,9 +71,11 @@ public class BoardController {
 	 
 	//상세페이지 진입 
 	@GetMapping("/detail")
-	public void BoardDetail(int no, Model model) {
+	public String BoardDetail(int no, Model model, Criteria cri) {
 		model.addAttribute("detail", boardsService.BoardDetail(no));
+		model.addAttribute("cri", cri);
 		System.out.println("되는거야?");
+		return "detail";
 	}
 	
 	//수정 페이지로 이동 
@@ -71,8 +83,10 @@ public class BoardController {
 	//수정하고자 하는 내용을 출력해야하기 때문에 int형 파라미터와 해당 게시판의 
 	//호출하는 service 메소드 (boardDetail)을 호출
 	@GetMapping("/modify")
-	public void BoardModifyGet(int no, Model model) {
+	public String BoardModifyGet(int no, Model model, Criteria cri) {
 		model.addAttribute("detail", boardsService.BoardDetail(no));
+		model.addAttribute("cri", cri);
+		return "modify";
 	}
 	
 	//페이지 수정 //   
@@ -86,11 +100,12 @@ public class BoardController {
 	}
 	
 	//페이지 삭제
-	@DeleteMapping("/delete/{no}")
-	public String boardDeletePOST(@PathVariable int no, RedirectAttributes rttr) {
+	//String 타입으로 리턴
+	@GetMapping("/delete")
+	public String boardDelete(int no, RedirectAttributes rttr) {
 		boardsService.delete(no);
-		System.out.println(no);
-		rttr.addFlashAttribute("result", "delete success");
+		System.out.println("삭제되어랏");
+		rttr.addFlashAttribute("result", "delete success"); //delete sucess데이터를 result 속성 값에 저장하는 메서드 addFlashAttribute
 		return "redirect:/list";
 	}
 	 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.exam.boards.mapper.BoardMapper;
 import com.exam.boards.model.BoardsVO;
+import com.exam.boards.model.Criteria;
 
 @Service
 public class BoardsService {
@@ -18,6 +19,11 @@ public class BoardsService {
 	//게시글 목록 조회
 	public List <BoardsVO> getBoardList() {
 		return boardmapper.getBoardList();
+	}
+	
+	//게시글 목록 조회(페이징)
+	public List <BoardsVO> getListPaging(Criteria cri) {
+		return boardmapper.getListPaging(cri);
 	}
 	
 	//하나의 게시글 조회	
@@ -42,9 +48,14 @@ public class BoardsService {
 
 	//게시글 삭제
 	public int delete(int no) {
+		//인터페이스의 boardmapper 의 삭제 메서드 호출. int 반환해야하기 때문에 return값에 mapper 메서드 호출 
 		return boardmapper.delete(no);
 	}
 	
+	//게시판 총 갯수
+	public int getTotal(){
+		return boardmapper.getTotal();
+	}
 	
 
 }

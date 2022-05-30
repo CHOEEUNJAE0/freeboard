@@ -85,16 +85,20 @@ textarea{
         		<input name="hits" readonly="readonly" value='<c:out value="${detail.hits}"/>'>
         </div>
         <div class="btn_wrap">
-			<a class="btn" id="list_btn">목록 페이지</a> 
-			<a class="btn" id="modify_btn">수정 하기</a>
+			<a class="btn" id="list_btn">목록</a> 
+			<a class="btn" id="modify_btn">수정</a>
+			<a class="btn" id="delete_btn">삭제</a>
 		</div>
 		<!-- 페이징, 검색 기능을 위해 form처리 -->
 		<form id="infoForm" action="/modify" method="get">
 			<input type="hidden" id="no" name="no" value='<c:out value="${detail.no}"/>'>
+			<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+			<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 		</form>
         	
 <script>
 	let form = $("#infoForm");
+	//let dForm =$("#deleteForm");
 
 	$("#list_btn").on("click", function(e){
 		form.find("#no").remove();
@@ -106,6 +110,12 @@ textarea{
 		form.attr("action", "/modify");
 		form.submit();
 	});	
+	//삭제
+	$("#delete_btn").on("click", function(e){
+		alert("삭제 하겠습니까?");
+		form.attr("action", "/delete");
+		form.submit();
+	});
 </script>
 		
 </body>

@@ -28,7 +28,7 @@
         </div>
 		<div class="input_wrap">
 			<label>게시판 내용</label>
-				<textarea rows="3" name="content"><c:out value="${detail.content}"/></textarea>
+				<textarea rows="10" name="content"><c:out value="${detail.content}"/></textarea>
 		</div>
         <div class="input_wrap">
         	<label>작성자</label>
@@ -51,6 +51,8 @@
 		
 		<form id="infoForm" action="/modify" method="get">
 			<input type="hidden" id="no" name="no" value='<c:out value="${detail.no}"/>'>
+			<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+			<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 		</form>
 <script>
 	let form = $("#infoForm");  //페이지 이동 form (list 페이지 이동)
@@ -65,6 +67,8 @@
 	
 	//수정 버튼
 	$("#modify_btn").on("click", function(e){
+		form.fine("#no").remove();
+		
 		form.attr("action", "/list");
 		mForm.submit();
 		});

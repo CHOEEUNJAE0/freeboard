@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.exam.boards.model.BoardsVO;
+import com.exam.boards.model.Criteria;
 
 @Repository
 @Mapper
@@ -16,6 +17,13 @@ public interface BoardMapper {
 
 	//select 게시글 목록 조회
 	public List <BoardsVO> getBoardList();
+	
+	
+	//게시판 목록 (페이징 처리)
+	//pageNum,amount 정보 넘기기 위해 criteria 클래스를 파라미터로 지정
+	public List<BoardsVO> getListPaging(Criteria cri);
+	
+	
 	
 	//게시글 등록             //리턴 파라미터 타입
 	public void upload(BoardsVO boards);
@@ -31,5 +39,9 @@ public interface BoardMapper {
 	//public BoardsVO getPage(int no);
 	
 	//삭제
+	//int형으로 작성. 삭제 성공시 1을 반환, 실패 시 0을 반환
 	public int delete (int no);
+	
+	//게시판 총 갯수
+	public int getTotal();
 }
