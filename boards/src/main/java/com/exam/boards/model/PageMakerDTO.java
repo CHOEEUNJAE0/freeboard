@@ -1,5 +1,7 @@
 package com.exam.boards.model;
 
+import java.util.List;
+
 public class PageMakerDTO {
 	
 	//시작 페이지
@@ -12,7 +14,9 @@ public class PageMakerDTO {
 	private int total;
 	//현재 페이지, 페이지 당 게시물 표시수 정보
 	private Criteria cri;
-	
+
+	//boardsVO list 타입으로 선언
+	private List <BoardsVO> getBoardList;
 	
 
 	//현재페이지에 대한 정보인 critria, 게시물의 총개수인 total을 파라미터로 부여한	생성자
@@ -106,9 +110,16 @@ public class PageMakerDTO {
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
+	
+	public List<BoardsVO> getGetBoardList() {
+		return getBoardList;
+	}
 
-
-
+	public void setGetBoardList(List<BoardsVO> getBoardList) {
+		this.getBoardList = getBoardList;
+	}
+	
+	//List <BoardVO> 은 toString에는 추가 하지 않아도 된다.
 	@Override
 	public String toString() {
 		return "PageMakerDTO [startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next
