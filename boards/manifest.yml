@@ -1,0 +1,8 @@
+---
+applications:
+- name: boards-jae
+  memory: 2048M
+  host: boards-jae
+  path: ./target/boards-0.0.1-SNAPSHOT
+  buildpack: java_buildpack
+

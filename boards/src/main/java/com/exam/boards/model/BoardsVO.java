@@ -22,7 +22,7 @@ public class BoardsVO {
 	private String lastmodified;
 	private String locale;
 
-	
+	private PageMakerDTO page;
 	
 	public int getNo() {
 		return no;

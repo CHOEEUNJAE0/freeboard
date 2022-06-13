@@ -28,7 +28,7 @@
         </div>
 		<div class="input_wrap">
 			<label>게시판 내용</label>
-				<textarea rows="10" name="content"><c:out value="${detail.content}"/></textarea>
+				<textarea rows="3" name="content"><c:out value="${detail.content}"/></textarea>
 		</div>
         <div class="input_wrap">
         	<label>작성자</label>
@@ -67,9 +67,6 @@
 	
 	//수정 버튼
 	$("#modify_btn").on("click", function(e){
-		form.fine("#no").remove();
-		
-		form.attr("action", "/list");
 		mForm.submit();
 		});
 	

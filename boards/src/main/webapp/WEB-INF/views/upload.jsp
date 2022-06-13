@@ -18,7 +18,7 @@
 		</div>		
 		<div class="input_wrap">
 			<label>내용</label>
-				<textarea rows="30" name="content"></textarea>
+				<textarea rows="3" name="content"></textarea>
 		</div>
 		<div class="input_wrap">
 			<label>작성자</label>
