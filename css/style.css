@@ -1,0 +1,38 @@
+
+/*100% 주는것은 상대적인것이므로 부모태그인 html,body 두개에도 100% 해 줘야 스크롤이 생기지 않고 화면에 꽉 차게 된다.*/
+html, body {
+  width : 100%;
+  height : 100%;
+}
+
+.bx-wrapper, .bx-viewport, .slider {
+  width : 100%;
+  height : 100%;
+}
+
+.background_01 {
+  width: 100%;
+  height: 100%;
+  background: url("../images/j.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+
+.background_02 {
+  width: 100%;
+  height: 100%;
+  background: url("../images/jae.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+
+.background_03 {
+  width: 100%;
+  height: 100%;
+  background: url("../images/lucky.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
