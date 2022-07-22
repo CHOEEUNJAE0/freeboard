@@ -11,6 +11,7 @@
   <link href="css/style.css" rel="stylesheet" type="text/css"/>
   <script src="js/jquery.1.12.4.js"></script>
   <script src="plugins/bxsliders/js/jquery.bxslider.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
   <script>
     $(document).ready(function(){
       $('.slider').bxSlider({
@@ -24,10 +25,29 @@
 </head>
 <body>
   <!--배경에 이미지 삽입 할 때에는 img 태그보다는 css적으로 div를 사용한다. -->
+  <div class="overlay"></div>
   <div class="slider">
     <div class="background_01"></div>
     <div class="background_02"></div>
     <div class="background_03"></div>
   </div>
+
+  <div class="contents">
+    <p class="contents_name">Choe, Eunjae</p>
+    <p class="contents_story">안녕하세요, 반갑습니다 지원자 최은재라고 합니다🙋‍♀️</p>
+  <div class="contents_sns">
+    <ul class="contents_list">
+      <li>
+        <a style="text-decoration:none" href="https://slow-magnolia-307.notion.site/b7ef4e053036418da4ecf25061b0650b" class="fa-regular fa-cube fa-4x"></a>
+      </li>
+      <li>
+        <a style="text-decoration:none" href="https://talkpotato.tistory.com/" class="fa-brands fa-blogger fa-4x"></a>
+      </li>
+      <li>
+        <a style="text-decoration:none" href="https://github.com/CHOEEUNJAE0?tab=repositories" class="fa-brands fa-github-alt fa-4x"></a>
+      </li>
+    </ul>
+  </div>
+</div>
 </body>
 </html>
